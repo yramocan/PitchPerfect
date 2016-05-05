@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var i: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +22,18 @@ class ViewController: UIViewController {
 
     @IBAction func recordAudio(sender: AnyObject) {
         // Record audio when Record button is pressed.
+        
+        printAndIncrement() // Primitive debugging
+    }
+    
+    
+    // MARK: Helper Functions
+    
+    var i: Int = 0 // Initialize counter variable for debugging
+    
+    func printAndIncrement() {
         i += 1
-        print("Record button pressed \(i) times");
+        print("Record button pressed \(i) times")
     }
 
 }
