@@ -2,17 +2,24 @@
 //  ViewController.swift
 //  PitchPerfect
 //
-//  Created by Yuri Ramocan on 5/5/16.
 //  Copyright © 2016 Yuri Ramocan. All rights reserved.
 //
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioRecorderDelegate {
+    @IBOutlet weak var recordLabel: UILabel!
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        stopButton.layer.borderColor = blackColor.CGColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,50 +27,29 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBOutlet weak var recordLabel: UILabel!
-    @IBOutlet weak var recordButton: UIButton!
-    
-    var recordingState: Bool = false
-
     @IBAction func recordAudio(sender: AnyObject) {
         // Record audio when Record button is pressed.
+        recordLabel.text = "Recording..." // Change label text when Record button is tapped.
+        toggleButton(recordButton) // Disable and hide Record button
+        toggleButton(stopButton) // Enable and show Stop button
         
-        if !recordingState {
-            recordLabel.text = "Recording..." // Change label text when Record button is tapped.
-            setStopButton(recordButton)
-        } else {
-            recordLabel.text = "Record your voice"
-            setRecButton(recordButton)
-        }
-        
-        recordingState = !recordingState
-        
-        printAndIncrement() // Primitive debugging
+        print("Record button pressed") // Primitive debugging
     }
     
+    @IBAction func stopRecording(sender: AnyObject) {
+        recordLabel.text = "Record your voice"
+        toggleButton(stopButton) // Disable and hide Stop Button
+        toggleButton(recordButton) // Enable and show Record button
+        performSegueWithIdentifier("toFilters", sender: nil)
+        
+        print("Stop button pressed") // Primitive debugging
+    }
     
     // MARK: Helper Functions
     
-    var i: Int = 0 // Initialize counter variable for debugging.
-    
-    func printAndIncrement() {
-        i += 1
-        print("Record button pressed \(i) times")
-    }
-    
-    func setStopButton(button: UIButton) {
-        button.layer.borderWidth = 1.0
-        button.layer.borderColor = blackColor.CGColor
-        button.setTitleColor(blackColor, forState: .Normal)
-        button.backgroundColor = UIColor.clearColor()
-        button.setTitle("Stop", forState: .Normal)
-    }
-    
-    func setRecButton(button: UIButton) {
-        button.layer.borderWidth = 0
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        button.backgroundColor = redColor
-        button.setTitle("Record", forState: .Normal)
+    func toggleButton(button: UIButton) {
+        button.enabled = !button.enabled
+        button.hidden = !button.hidden
     }
 
 }
