@@ -50,21 +50,21 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.meteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
-        
-        print("Record button pressed.") // Primitive debugging
     }
     
     @IBAction func stopRecording(sender: AnyObject) {
         // Stop audio recording when Stop button is tapped.
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
+        
+        // Override output route to play from bottom speaker
+        try! audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
+        
         try! audioSession.setActive(false)
         
         recordLabel.text = "Record your voice"
         toggleButton(stopButton) // Disable and hide Stop Button
         toggleButton(recordButton) // Enable and show Record button
-        
-        print("Stop button pressed.") // Primitive debugging
     }
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
@@ -75,7 +75,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             // If saving recording failed, then print error to console.
             print("Recording could not be saved.")
         }
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
