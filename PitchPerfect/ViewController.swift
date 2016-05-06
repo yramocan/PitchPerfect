@@ -40,7 +40,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         recordLabel.text = "Record your voice"
         toggleButton(stopButton) // Disable and hide Stop Button
         toggleButton(recordButton) // Enable and show Record button
-        performSegueWithIdentifier("toFilters", sender: nil)
+        
+        // Perform manual segue to PlaybackViewController
+        performSegueWithIdentifier("toPlayback", sender: nil)
         
         print("Stop button pressed") // Primitive debugging
     }

@@ -120,7 +120,7 @@
                         <outlet property="recordButton" destination="f1O-OW-y89" id="aMk-0i-W96"/>
                         <outlet property="recordLabel" destination="A90-4t-jXQ" id="Ayn-4R-t47"/>
                         <outlet property="stopButton" destination="sAr-eU-IN5" id="WWH-BT-SkJ"/>
-                        <segue destination="cZ7-Uu-EEJ" kind="show" identifier="toFilters" id="vpk-vq-pEU"/>
+                        <segue destination="cZ7-Uu-EEJ" kind="show" identifier="toPlayback" id="vpk-vq-pEU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
