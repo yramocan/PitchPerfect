@@ -8,7 +8,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Record Sounds View Controller-->
+        <!--Pitch Perfect-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="RecordSoundsViewController" customModule="PitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
@@ -116,7 +116,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="HQD-Co-CDe"/>
+                    <navigationItem key="navigationItem" title="Pitch Perfect" id="HQD-Co-CDe"/>
                     <connections>
                         <outlet property="recordButton" destination="f1O-OW-y89" id="aMk-0i-W96"/>
                         <outlet property="recordLabel" destination="A90-4t-jXQ" id="Ayn-4R-t47"/>
@@ -128,7 +128,7 @@
             </objects>
             <point key="canvasLocation" x="1117" y="429"/>
         </scene>
-        <!--Play Sounds View Controller-->
+        <!--Choose a Voice Effect-->
         <scene sceneID="1zI-t8-WeF">
             <objects>
                 <viewController id="cZ7-Uu-EEJ" customClass="PlaySoundsViewController" customModule="PitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
@@ -229,6 +229,7 @@
                             <constraint firstItem="sCu-cU-dbs" firstAttribute="top" secondItem="HL9-Wa-7Tp" secondAttribute="bottom" id="jXu-yj-XkK"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Choose a Voice Effect" id="Z7F-Bs-aIP"/>
                     <connections>
                         <outlet property="chipmunkButton" destination="tL1-1n-6Qz" id="Lcz-Hx-iVD"/>
                         <outlet property="echoButton" destination="Map-eb-7HN" id="XB5-GU-ZJQ"/>
