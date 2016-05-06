@@ -12,6 +12,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var recordLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    
+    var audioRecorder: AVAudioRecorder!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,26 +30,60 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @IBAction func recordAudio(sender: AnyObject) {
-        // Record audio when Record button is tapped.
-        
         recordLabel.text = "Recording..." // Change label text when Record button is tapped.
         toggleButton(recordButton) // Disable and hide Record button
         toggleButton(stopButton) // Enable and show Stop button
         
-        print("Record button pressed") // Primitive debugging
+        // Record audio when Record button is tapped.
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        
+        let recordingName = "recordedVoice.wav"
+        let pathArray = [dirPath, recordingName]
+        let filePath = NSURL.fileURLWithPathComponents(pathArray)
+        print(filePath)
+        
+        let session = AVAudioSession.sharedInstance()
+        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        
+        try! audioRecorder = AVAudioRecorder(URL: filePath!, settings: [:])
+        audioRecorder.delegate = self
+        audioRecorder.meteringEnabled = true
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
+        
+        print("Record button pressed.") // Primitive debugging
     }
     
     @IBAction func stopRecording(sender: AnyObject) {
         // Stop audio recording when Stop button is tapped.
+        audioRecorder.stop()
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setActive(false)
         
         recordLabel.text = "Record your voice"
         toggleButton(stopButton) // Disable and hide Stop Button
         toggleButton(recordButton) // Enable and show Record button
         
-        // Perform manual segue to PlaybackViewController
-        performSegueWithIdentifier("toPlayback", sender: nil)
+        print("Stop button pressed.") // Primitive debugging
+    }
+    
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag {
+            // Perform manual segue to PlaybackViewController.
+            performSegueWithIdentifier("toPlayback", sender: audioRecorder.url)
+        } else {
+            // If saving recording failed, then print error to console.
+            print("Recording could not be saved.")
+        }
         
-        print("Stop button pressed") // Primitive debugging
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toPlayback" {
+            let playSoundsVC = segue.destinationViewController as! PlaySoundsViewController
+            let recordedAudioURL = sender as! NSURL
+            playSoundsVC.recordedAudioURL = recordedAudioURL
+        }
     }
     
     // MARK: Helper Functions
