@@ -59,13 +59,14 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         
         // node for echo
         let echoNode = AVAudioUnitDistortion()
-        echoNode.loadFactoryPreset(.MultiEcho1)
+        echoNode.loadFactoryPreset(.MultiEcho2)
+        echoNode.wetDryMix = 25
         audioEngine.attachNode(echoNode)
         
         // node for reverb
         let reverbNode = AVAudioUnitReverb()
         reverbNode.loadFactoryPreset(.Cathedral)
-        reverbNode.wetDryMix = 50
+        reverbNode.wetDryMix = 25
         audioEngine.attachNode(reverbNode)
         
         // connect nodes
