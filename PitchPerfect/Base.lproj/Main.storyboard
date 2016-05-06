@@ -21,7 +21,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1O-OW-y89">
                                 <rect key="frame" x="225" y="264" width="150" height="72"/>
-                                <color key="backgroundColor" red="0.8949277400970459" green="0.27393534779548645" blue="0.29775512218475342" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.83529411764705885" green="0.29803921568627451" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="f1O-OW-y89" secondAttribute="height" multiplier="27:13" id="Z6M-ws-Lga"/>
                                 </constraints>
@@ -44,9 +44,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Record your voice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A90-4t-jXQ">
-                                <rect key="frame" x="161.5" y="173" width="278" height="43"/>
+                                <rect key="frame" x="161" y="173" width="278" height="43"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="64"/>
@@ -77,6 +77,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="recordButton" destination="f1O-OW-y89" id="aMk-0i-W96"/>
+                        <outlet property="recordLabel" destination="A90-4t-jXQ" id="Ayn-4R-t47"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
