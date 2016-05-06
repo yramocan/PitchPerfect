@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVAudioRecorderDelegate {
+class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var recordLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
@@ -28,7 +28,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @IBAction func recordAudio(sender: AnyObject) {
-        // Record audio when Record button is pressed.
+        // Record audio when Record button is tapped.
+        
         recordLabel.text = "Recording..." // Change label text when Record button is tapped.
         toggleButton(recordButton) // Disable and hide Record button
         toggleButton(stopButton) // Enable and show Stop button
@@ -37,6 +38,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func stopRecording(sender: AnyObject) {
+        // Stop audio recording when Stop button is tapped.
+        
         recordLabel.text = "Record your voice"
         toggleButton(stopButton) // Disable and hide Stop Button
         toggleButton(recordButton) // Enable and show Record button
